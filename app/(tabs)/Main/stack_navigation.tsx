@@ -19,7 +19,7 @@ export default function App() {
       <Stack.Navigator>
         {/* Home screen (tab_navigation) */}
         <Stack.Screen
-          name="Volunteer Bazzar"
+          name="Volunteer"
           component={tab_navigation}
           options={({ navigation }) => ({
             headerTitle: false,
