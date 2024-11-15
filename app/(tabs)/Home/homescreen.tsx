@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text, FlatList, TouchableOpacity, StyleSheet } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons'; // Import Ionicons from react-native-vector-icons
 
-const HomeScreen = ({navigation}) => {
+const HomeScreen = ({ navigation }) => {
   // Define the grid data with icon names
   const gridData = [
     { id: '1', title: 'Joined Events', icon: 'calendar-outline', screen: 'JoinedEvents' },
@@ -25,6 +25,7 @@ const HomeScreen = ({navigation}) => {
 
   return (
     <View style={styles.container}>
+      {/* Grid of options */}
       <FlatList
         data={gridData}
         renderItem={renderGridItem}
@@ -32,6 +33,14 @@ const HomeScreen = ({navigation}) => {
         numColumns={2}
         contentContainerStyle={styles.grid}
       />
+
+      {/* Floating Button for Chatbot */}
+      <TouchableOpacity
+        style={styles.floatingButton}
+        onPress={() => navigation.navigate('Chatbot')}
+      >
+        <Icon name="chatbubbles-outline" size={30} color="#fff" />
+      </TouchableOpacity>
     </View>
   );
 };
@@ -42,12 +51,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#F9F9F9',
     paddingTop: 20,
     paddingHorizontal: 20,
-  },
-  header: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    marginBottom: 20,
-    alignSelf: 'center',
   },
   grid: {
     justifyContent: 'space-between',
@@ -70,6 +73,22 @@ const styles = StyleSheet.create({
     marginTop: 10,
     fontSize: 16,
     color: '#333',
+  },
+  floatingButton: {
+    position: 'absolute',
+    bottom: 20,
+    right: 20,
+    backgroundColor: '#1E90FF',
+    borderRadius: 50,
+    width: 60,
+    height: 60,
+    justifyContent: 'center',
+    alignItems: 'center',
+    elevation: 5,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.3,
+    shadowRadius: 3.84,
   },
 });
 

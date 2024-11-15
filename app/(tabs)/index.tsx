@@ -1,20 +1,25 @@
-import * as React from 'react';
+import React, { useEffect, useState } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { createStackNavigator } from '@react-navigation/stack';
-import { MaterialIcons } from '@expo/vector-icons';
-import Home from './Home/homescreen';  // Ensure this file does NOT have its own NavigationContainer
-import Profile from './Profile/profile';   // Ensure this file does NOT have its own NavigationContainer
-import homescreen from './Home/homescreen';
-import Stack_Navigation from './Main/stack_navigation'
+import Stack_Navigation from './Main/stack_navigation';
+import SplashScreen from './SplashScreen';
 
-const Tab = createBottomTabNavigator();
-const Stack = createStackNavigator();
-
-
-// Main App component
 export default function App() {
+  const [isLoading, setIsLoading] = useState(true);
+
+  // Simulate loading time
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 2000); // 2 seconds delay for splash screen
+
+    return () => clearTimeout(timer); // Cleanup the timer
+  }, []);
+
+  if (isLoading) {
+    return <SplashScreen />;
+  }
+
   return (
-      <Stack_Navigation/>
+      <Stack_Navigation />
   );
 }
