@@ -11,8 +11,10 @@ import BloodDonors from '../Home/BloodDonor';
 import Social from '../Home/Social';
 import Financial from '../Home/Financial';
 import Professional from '../Home/Professional';
-import LoginScreen from '../Authentication/loginscreen';
+import LoginScreen from '../Authentication/LoginScreen';
 import SignupScreen from '../Authentication/signupscreen';
+import VolunteersList from '../Lists/VolunteersList'; // Added VolunteersList by Huzaifa
+import VolunteerProfile from '../Lists/VolunteerProfile';
 
 const Stack = createStackNavigator();
 
@@ -66,13 +68,14 @@ export default function App() {
         })}
       />
 
+      
 
       {/* Login Screen with back button */}
       <Stack.Screen
         name="Login"
         component={LoginScreen}
         options={({ navigation }) => ({
-          headerTitle: false,
+          headerTitle: () => null, // Removes the header title
           headerLeft: () => (
             <TouchableOpacity
               onPress={() => navigation.goBack()}
@@ -90,7 +93,7 @@ export default function App() {
         name="Signup"
         component={SignupScreen}
         options={({ navigation }) => ({
-          headerTitle: false,
+          headerTitle: () => null, // Removes the header title
           headerLeft: () => (
             <TouchableOpacity
               onPress={() => navigation.goBack()}
@@ -102,6 +105,40 @@ export default function App() {
           headerShown: true,
         })}
       />
+
+      {/* Volunteers List Screen */}
+      <Stack.Screen
+        name="VolunteersList"
+        component={VolunteersList}
+        options={({ navigation }) => ({
+          headerTitle: "Volunteers",
+          headerLeft: () => (
+            <TouchableOpacity
+              onPress={() => navigation.goBack()}
+              style={{ marginLeft: 10 }}
+            >
+              <MaterialIcons name="arrow-back" size={24} color="black" />
+            </TouchableOpacity>
+          ),
+          headerShown: true,
+        })}
+
+
+      />
+
+<Stack.Screen
+  name="VolunteerProfile"
+  component={VolunteerProfile}
+  options={{
+    title: "Volunteer Profile",
+    headerStyle: { backgroundColor: "#007bff" },
+    headerTintColor: "#fff",
+    headerTitleStyle: { fontWeight: "bold", fontSize: 20 },
+  }}
+/>
+
+
+
 
       {/* Other screens with back navigation */}
       {[
@@ -117,7 +154,7 @@ export default function App() {
           name={screen.name}
           component={screen.component}
           options={({ navigation }) => ({
-            headerTitle: false,
+            headerTitle: () => null, // Removes the header title
             headerLeft: () => (
               <TouchableOpacity
                 onPress={() => navigation.goBack()}

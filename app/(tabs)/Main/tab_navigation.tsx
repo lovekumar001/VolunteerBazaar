@@ -11,14 +11,25 @@ export default function App() {
     <Tab.Navigator
       screenOptions={({ route }) => ({
         tabBarIcon: ({ color, size }) => {
-          // Assign icons based on the screen name
-          let iconName = route.name === 'Home' ? 'home' : 'person';
+          // Map route names to valid MaterialIcons names
+          let iconName: keyof typeof MaterialIcons.glyphMap;
+
+          switch (route.name) {
+            case 'Home':
+              iconName = 'home';
+              break;
+            case 'Profile':
+              iconName = 'person';
+              break;
+            default:
+              iconName = 'help-outline'; // Fallback icon
+          }
 
           return <MaterialIcons name={iconName} size={size} color={color} />;
         },
         tabBarActiveTintColor: 'tomato',
         tabBarInactiveTintColor: 'gray',
-        headerShown: false,  // Remove header for all screens
+        headerShown: false, // Remove header for all screens
       })}
     >
       <Tab.Screen 
