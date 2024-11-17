@@ -1,9 +1,23 @@
 import React from 'react';
 import { View, Text, FlatList, StyleSheet } from 'react-native';
+import { StackNavigationProp } from '@react-navigation/stack';
 
-const BloodDonorsScreen = ({ navigation }) => {
+// Define types for the donor item
+type Donor = {
+  id: string;
+  name: string;
+  bloodGroup: string;
+  contact: string;
+};
+
+// Define the props for the screen
+type BloodDonorsScreenProps = {
+  navigation: StackNavigationProp<any, 'BloodDonors'>;
+};
+
+const BloodDonorsScreen: React.FC<BloodDonorsScreenProps> = ({ navigation }) => {
   // Dummy data for blood donors
-  const donors = [
+  const donors: Donor[] = [
     { id: '1', name: 'John Doe', bloodGroup: 'O+', contact: '123-456-7890' },
     { id: '2', name: 'Jane Smith', bloodGroup: 'A-', contact: '987-654-3210' },
     { id: '3', name: 'Emily Johnson', bloodGroup: 'B+', contact: '555-123-4567' },
@@ -12,7 +26,7 @@ const BloodDonorsScreen = ({ navigation }) => {
   ];
 
   // Render each donor item
-  const renderDonorItem = ({ item }) => (
+  const renderDonorItem = ({ item }: { item: Donor }) => (
     <View style={styles.donorItem}>
       <Text style={styles.donorName}>{item.name}</Text>
       <Text style={styles.donorDetails}>Blood Group: {item.bloodGroup}</Text>
