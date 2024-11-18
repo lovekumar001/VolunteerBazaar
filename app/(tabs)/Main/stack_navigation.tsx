@@ -11,10 +11,12 @@ import BloodDonors from '../Home/BloodDonor';
 import Social from '../Home/Social';
 import Financial from '../Home/Financial';
 import Professional from '../Home/Professional';
-import LoginScreen from '../Authentication/loginscreen';
+import LoginScreen from '../Authentication/LoginScreen';
 import SignupScreen from '../Authentication/signupscreen';
 import VolunteersList from '../Lists/VolunteersList'; // Added VolunteersList by Huzaifa
 import VolunteerProfile from '../Lists/VolunteerProfile';
+import ActivityDetails from '../Lists/ActivityDetails'; // Added VolunteersList by Huzaifa
+import VolunteerActivities from '../Lists/VolunteerActivities';
 
 const Stack = createStackNavigator();
 
@@ -67,8 +69,30 @@ export default function App() {
           headerShown: true,
         })}
       />
-
       
+
+      <Stack.Screen
+  name="VolunteerActivities"
+  component={VolunteerActivities}
+  options={{
+    title: "Volunteer Activities",
+    headerStyle: { backgroundColor: "#1E90FF" },
+    headerTintColor: "#fff",
+    headerTitleStyle: { fontWeight: "bold" },
+  }}
+/>
+
+<Stack.Screen
+  name="ActivityDetails"
+  component={ActivityDetails}
+  options={{
+    title: "Activity Details",
+    headerStyle: { backgroundColor: "#1E90FF" },
+    headerTintColor: "#fff",
+    headerTitleStyle: { fontWeight: "bold" },
+  }}
+/>
+
 
       {/* Login Screen with back button */}
       <Stack.Screen

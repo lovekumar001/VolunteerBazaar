@@ -26,7 +26,7 @@ const SignUpScreen: React.FC = () => {
 
     setIsLoading(true); // Show loader
     try {
-      const response = await axios.post("http://192.168.3.103:3000/auth/signup", {
+      const response = await axios.post("http://192.168.1.109:3000/auth/signup", {
         name,
         email,
         password,

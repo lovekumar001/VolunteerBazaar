@@ -34,7 +34,7 @@ const LoginScreen: React.FC<Props> = ({ navigation }) => {
 
     setIsLoading(true); // Show loader
     try {
-      const response = await axios.post('http://192.168.3.103:3000/auth/login', {
+      const response = await axios.post('http://192.168.1.109:3000/auth/login', {
         email,
         password,
       });

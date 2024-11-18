@@ -14,9 +14,12 @@ app.use(express.json()); // Parses JSON bodies (redundant with bodyParser)
 
 // Import routes
 const authRoutes = require("./Routes/auth"); // Authentication routes
-
+const userRoutes = require("./Routes/users"); // Users routes user list
+const actRoutes = require("./Routes/activities"); //activities list
 // Use routes
 app.use("/auth", authRoutes); // Routes for signup and login
+app.use("/users", userRoutes); // Routes for volunteers/users data
+app.use("/activities", actRoutes); // Routes for volunteers/users data
 
 // Root route
 app.get("/", (req, res) => {

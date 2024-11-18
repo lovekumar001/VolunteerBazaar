@@ -10,7 +10,8 @@ const HomeScreen = ({ navigation }) => {
     { id: '3', title: 'Social', icon: 'chatbubble-outline', screen: 'Social' },
     { id: '4', title: 'Financial', icon: 'cash-outline', screen: 'Financial' },
     { id: '5', title: 'Professional', icon: 'briefcase-outline', screen: 'Professional' },
-    { id: '6', title: 'Volunteers List', icon: 'people-outline', screen: 'VolunteersList' }, // Add Volunteers List
+    { id: '6', title: 'Volunteers List', icon: 'people-outline', screen: 'VolunteersList' },
+    { id: '7', title: 'Volunteers Activities', icon: 'people-outline', screen: 'VolunteerActivities' },// Add Volunteers List
   ];
 
   // Render each grid item
