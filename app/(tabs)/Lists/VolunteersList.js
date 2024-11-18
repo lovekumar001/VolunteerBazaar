@@ -19,7 +19,7 @@ const VolunteersList = ({ navigation }) => {
   useEffect(() => {
     const fetchVolunteers = async () => {
       try {
-        const url = "http://192.168.146.4:3000/users";
+        const url = "http://192.168.3.103:3000/users"; //change this with your ip
         const response = await axios.get(url);
         setVolunteers(response.data);
         setIsLoading(false);

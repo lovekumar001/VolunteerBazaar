@@ -1,23 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const mysql = require("mysql2");
-
-// Database Connection
-const db = mysql.createConnection({
-    host: process.env.DB_HOST,
-    user: process.env.DB_USER,
-    password: process.env.DB_PASSWORD,
-    database: process.env.DB_NAME,
-    port: process.env.DB_PORT,
-});
-
-db.connect((err) => {
-    if (err) {
-        console.error("Database connection failed:", err.message);
-        return;
-    }
-    console.log("Connected to the MySQL database.");
-});
+const db = require("../db"); // Database connection
 
 // Get all volunteers
 router.get("/", (req, res) => {
@@ -26,13 +9,9 @@ router.get("/", (req, res) => {
         if (err) {
             return res.status(500).json({ error: err.message });
         }
-
-        // Send all fields in the response
         res.json(results);
     });
 });
-
-
 
 // Get a single volunteer by user_id
 router.get("/:id", (req, res) => {
@@ -57,7 +36,6 @@ router.post("/", (req, res) => {
         age,
         city,
         province,
-        rating,
         degree,
         field,
         university,
@@ -66,18 +44,26 @@ router.post("/", (req, res) => {
         skills,
         causes_interested_in,
         event_types,
-        activities_volunteered,
-        reviews_received,
-        referral_count,
-        hours_completed,
     } = req.body;
 
     const sql = `INSERT INTO volunteers_data 
-        (name, gender, age, city, province, rating, degree, field, university, employment_status, bio, skills, causes_interested_in, event_types, activities_volunteered, reviews_received, referral_count, hours_completed)
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`;
+        (name, gender, age, city, province, degree, field, university, employment_status, bio, skills, causes_interested_in, event_types)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`;
 
     db.query(sql, [
-        name, gender, age, city, province, rating, degree, field, university, employment_status, bio, skills, causes_interested_in, event_types, activities_volunteered, reviews_received, referral_count, hours_completed,
+        name,
+        gender,
+        age,
+        city,
+        province,
+        degree,
+        field,
+        university,
+        employment_status,
+        bio,
+        skills,
+        causes_interested_in,
+        event_types,
     ], (err, result) => {
         if (err) {
             return res.status(500).json({ error: err.message });
@@ -86,7 +72,7 @@ router.post("/", (req, res) => {
     });
 });
 
-// Update a volunteer by user_id
+// Update a volunteer
 router.put("/:id", (req, res) => {
     const userId = req.params.id;
     const {
@@ -95,7 +81,6 @@ router.put("/:id", (req, res) => {
         age,
         city,
         province,
-        rating,
         degree,
         field,
         university,
@@ -104,18 +89,27 @@ router.put("/:id", (req, res) => {
         skills,
         causes_interested_in,
         event_types,
-        activities_volunteered,
-        reviews_received,
-        referral_count,
-        hours_completed,
     } = req.body;
 
     const sql = `UPDATE volunteers_data SET 
-        name = ?, gender = ?, age = ?, city = ?, province = ?, rating = ?, degree = ?, field = ?, university = ?, employment_status = ?, bio = ?, skills = ?, causes_interested_in = ?, event_types = ?, activities_volunteered = ?, reviews_received = ?, referral_count = ?, hours_completed = ?
+        name = ?, gender = ?, age = ?, city = ?, province = ?, degree = ?, field = ?, university = ?, employment_status = ?, bio = ?, skills = ?, causes_interested_in = ?, event_types = ?
         WHERE user_id = ?`;
 
     db.query(sql, [
-        name, gender, age, city, province, rating, degree, field, university, employment_status, bio, skills, causes_interested_in, event_types, activities_volunteered, reviews_received, referral_count, hours_completed, userId,
+        name,
+        gender,
+        age,
+        city,
+        province,
+        degree,
+        field,
+        university,
+        employment_status,
+        bio,
+        skills,
+        causes_interested_in,
+        event_types,
+        userId,
     ], (err, result) => {
         if (err) {
             return res.status(500).json({ error: err.message });
@@ -124,7 +118,7 @@ router.put("/:id", (req, res) => {
     });
 });
 
-// Delete a volunteer by user_id
+// Delete a volunteer
 router.delete("/:id", (req, res) => {
     const userId = req.params.id;
     const sql = "DELETE FROM volunteers_data WHERE user_id = ?";

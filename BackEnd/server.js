@@ -6,18 +6,17 @@ require("dotenv").config();
 
 const app = express();
 
-
-
 // Middleware
-app.use(bodyParser.json());
-app.use(cors());
-app.use(morgan("dev"));
+app.use(bodyParser.json()); // Parses JSON bodies
+app.use(cors()); // Enables CORS
+app.use(morgan("dev")); // Logs HTTP requests
+app.use(express.json()); // Parses JSON bodies (redundant with bodyParser)
 
 // Import routes
-const userRoutes = require("./routes/users");
+const authRoutes = require("./Routes/auth"); // Authentication routes
 
 // Use routes
-app.use("/users", userRoutes);
+app.use("/auth", authRoutes); // Routes for signup and login
 
 // Root route
 app.get("/", (req, res) => {
@@ -25,7 +24,7 @@ app.get("/", (req, res) => {
 });
 
 // Start the server
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);
 });
