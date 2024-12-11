@@ -1,6 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { View, Text, StyleSheet, ActivityIndicator } from "react-native";
 import axios from "axios";
+import Constants from 'expo-constants';
+
+const {IP } = Constants.expoConfig.extra;
+
+
 
 const ActivityDetails = ({ route }) => {
   const { id } = route.params;
@@ -10,7 +15,7 @@ const ActivityDetails = ({ route }) => {
   useEffect(() => {
     const fetchActivity = async () => {
       try {
-        const response = await axios.get(`http://192.168.1.109:3000/activities/${id}`); // Replace with your backend URL
+        const response = await axios.get(`${IP}activities/${id}`); // Replace with your backend URL
         setActivity(response.data);
       } catch (error) {
         console.error("Error fetching activity details:", error.message);

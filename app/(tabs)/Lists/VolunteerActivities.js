@@ -1,4 +1,8 @@
 import React, { useEffect, useState } from "react";
+import Constants from 'expo-constants';
+
+const {IP } = Constants.expoConfig.extra;
+
 import {
   View,
   Text,
@@ -27,7 +31,7 @@ const VolunteerActivities = ({ navigation }) => {
   useEffect(() => {
     const fetchActivities = async () => {
       try {
-        const response = await axios.get("http://192.168.1.109:3000/activities"); // Replace with your backend URL
+        const response = await axios.get(`${IP}activities`); // Replace with your backend URL
         setActivities(response.data);
       } catch (error) {
         console.error("Error fetching activities:", error.message);

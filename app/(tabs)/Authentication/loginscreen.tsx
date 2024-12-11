@@ -12,7 +12,9 @@ import {
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from 'axios';
 import { StackNavigationProp } from '@react-navigation/stack';
-import { RootStackParamList } from '../App';
+import Constants from 'expo-constants';
+
+const {IP } = Constants.expoConfig.extra;
 
 type LoginScreenNavigationProp = StackNavigationProp<RootStackParamList, 'Login'>;
 
@@ -34,7 +36,7 @@ const LoginScreen: React.FC<Props> = ({ navigation }) => {
 
     setIsLoading(true); // Show loader
     try {
-      const response = await axios.post('http://192.168.1.109:3000/auth/login', {
+      const response = await axios.post(`${IP}auth/login`, {
         email,
         password,
       });

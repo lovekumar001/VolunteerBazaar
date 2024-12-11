@@ -29,7 +29,7 @@ const PostActivity = ({ navigation }) => {
     };
 
     try {
-      await axios.post("http://192.168.1.109:3000/activities", newActivity); // Replace with your backend URL
+      await axios.post(`${process.env.IP}activities`, newActivity); // Replace with your backend URL
       Alert.alert("Success", "Activity posted successfully!");
       navigation.goBack();
     } catch (error) {

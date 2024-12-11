@@ -1,6 +1,10 @@
 import React, { useState } from "react";
 import { View, Text, TextInput, Button, StyleSheet, Alert, ScrollView, KeyboardAvoidingView, Platform } from "react-native";
 import axios from "axios";
+import Constants from 'expo-constants';
+
+const {IP } = Constants.expoConfig.extra;
+
 
 const RegisterActivity = ({ navigation }) => {
   const [title, setTitle] = useState("");
@@ -31,7 +35,7 @@ const RegisterActivity = ({ navigation }) => {
     };
 
     try {
-      await axios.post("http://192.168.1.109:3000/activities", newActivity); // Replace with your backend URL
+      await axios.post(`${IP}activities`, newActivity); // Replace with your backend URL
       Alert.alert("Success", "Activity posted successfully!");
       setSubmittedData(newActivity); // Save submitted data for display
     } catch (error) {

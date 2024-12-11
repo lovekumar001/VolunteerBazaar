@@ -9,6 +9,9 @@ import {
   ActivityIndicator,
 } from "react-native";
 import axios from "axios";
+import Constants from 'expo-constants';
+
+const {IP } = Constants.expoConfig.extra;
 
 const SignUpScreen: React.FC = () => {
   const [name, setName] = useState("");
@@ -26,7 +29,7 @@ const SignUpScreen: React.FC = () => {
 
     setIsLoading(true); // Show loader
     try {
-      const response = await axios.post("http://192.168.1.109:3000/auth/signup", {
+      const response = await axios.post(`${IP}auth/signup`, {
         name,
         email,
         password,
