@@ -11,12 +11,14 @@ import BloodDonors from '../Home/BloodDonor';
 import Social from '../Home/Social';
 import Financial from '../Home/Financial';
 import Professional from '../Home/Professional';
-import LoginScreen from '../Authentication/LoginScreen';
+import LoginScreen from '../Authentication/loginscreen';
 import SignupScreen from '../Authentication/signupscreen';
 import VolunteersList from '../Lists/VolunteersList'; // Added VolunteersList by Huzaifa
 import VolunteerProfile from '../Lists/VolunteerProfile';
 import ActivityDetails from '../Lists/ActivityDetails'; // Added VolunteersList by Huzaifa
 import VolunteerActivities from '../Lists/VolunteerActivities';
+import RegisterActivity from '../Lists/RegisterActivity'; // RegisterForActivity
+import PostActivity from '../Lists/PostActivity'; // PostActivity
 
 const Stack = createStackNavigator();
 
@@ -69,30 +71,52 @@ export default function App() {
           headerShown: true,
         })}
       />
-      
+
+      {/* Activity Screens */}
+      <Stack.Screen
+        name="VolunteerActivities"
+        component={VolunteerActivities}
+        options={{
+          title: "Volunteer Activities",
+          headerStyle: { backgroundColor: "#1E90FF" },
+          headerTintColor: "#fff",
+          headerTitleStyle: { fontWeight: "bold" },
+        }}
+      />
 
       <Stack.Screen
-  name="VolunteerActivities"
-  component={VolunteerActivities}
-  options={{
-    title: "Volunteer Activities",
-    headerStyle: { backgroundColor: "#1E90FF" },
-    headerTintColor: "#fff",
-    headerTitleStyle: { fontWeight: "bold" },
-  }}
-/>
+        name="ActivityDetails"
+        component={ActivityDetails}
+        options={{
+          title: "Activity Details",
+          headerStyle: { backgroundColor: "#1E90FF" },
+          headerTintColor: "#fff",
+          headerTitleStyle: { fontWeight: "bold" },
+        }}
+      />
 
-<Stack.Screen
-  name="ActivityDetails"
-  component={ActivityDetails}
-  options={{
-    title: "Activity Details",
-    headerStyle: { backgroundColor: "#1E90FF" },
-    headerTintColor: "#fff",
-    headerTitleStyle: { fontWeight: "bold" },
-  }}
-/>
+      {/* Register and Post Activity Screens */}
+      <Stack.Screen
+        name="RegisterActivity"
+        component={RegisterActivity}
+        options={{
+          title: "Register for Activity",
+          headerStyle: { backgroundColor: "#1E90FF" },
+          headerTintColor: "#fff",
+          headerTitleStyle: { fontWeight: "bold" },
+        }}
+      />
 
+      <Stack.Screen
+        name="PostActivity"
+        component={PostActivity}
+        options={{
+          title: "Post an Activity",
+          headerStyle: { backgroundColor: "#1E90FF" },
+          headerTintColor: "#fff",
+          headerTitleStyle: { fontWeight: "bold" },
+        }}
+      />
 
       {/* Login Screen with back button */}
       <Stack.Screen
@@ -146,26 +170,21 @@ export default function App() {
           ),
           headerShown: true,
         })}
-
-
       />
 
-<Stack.Screen
-  name="VolunteerProfile"
-  component={VolunteerProfile}
-  options={{
-    title: "Volunteer Profile",
-    headerStyle: { backgroundColor: "#007bff" },
-    headerTintColor: "#fff",
-    headerTitleStyle: { fontWeight: "bold", fontSize: 20 },
-  }}
-/>
-
-
-
+      <Stack.Screen
+        name="VolunteerProfile"
+        component={VolunteerProfile}
+        options={{
+          title: "Volunteer Profile",
+          headerStyle: { backgroundColor: "#007bff" },
+          headerTintColor: "#fff",
+          headerTitleStyle: { fontWeight: "bold", fontSize: 20 },
+        }}
+      />
 
       {/* Other screens with back navigation */}
-      {[
+      {[ 
         { name: 'editprofile', component: editprofile, title: 'Edit Profile' },
         { name: 'JoinedEvents', component: JoinedEvents, title: 'Joined Events' },
         { name: 'BloodDonors', component: BloodDonors, title: 'Blood Donors' },

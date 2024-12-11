@@ -1,6 +1,23 @@
 const express = require("express");
 const router = express.Router();
-const db = require("../db"); // Database connection
+const mysql = require("mysql2");
+
+// Database Connection
+const db = mysql.createConnection({
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_NAME,
+    port: process.env.DB_PORT,
+});
+-
+db.connect((err) => {
+    if (err) {
+        console.error("Database connection failed:", err.message);
+        return;
+    }
+    console.log("Connected to the MySQL database.");
+});
 
 // Get all volunteers
 router.get("/", (req, res) => {

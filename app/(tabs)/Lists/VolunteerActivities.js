@@ -81,27 +81,21 @@ const VolunteerActivities = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
-      {isLoading ? (
-        <ActivityIndicator size="large" color="#1E90FF" />
-      ) : error ? (
-        <View style={styles.errorContainer}>
-          <Text style={styles.errorText}>{error}</Text>
-          <TouchableOpacity style={styles.retryButton} onPress={handleRetry}>
-            <Text style={styles.retryButtonText}>Retry</Text>
-          </TouchableOpacity>
-        </View>
-      ) : (
-        <FlatList
-          data={activities}
-          keyExtractor={(item) => item.id.toString()}
-          renderItem={renderActivity}
-          contentContainerStyle={styles.listContent}
-          showsVerticalScrollIndicator={false}
-          ListEmptyComponent={
-            <Text style={styles.emptyText}>No activities available at the moment.</Text>
-          }
-        />
-      )}
+          <View style={styles.buttonsContainer}>
+            <TouchableOpacity
+              style={styles.mainButton}
+              onPress={() => navigation.navigate("RegisterActivity")}
+            >
+              <Text style={styles.mainButtonText}>Register for Activity</Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity
+              style={styles.mainButton}
+              onPress={() => navigation.navigate("PostActivity")}
+            >
+              <Text style={styles.mainButtonText}>Post an Activity</Text>
+            </TouchableOpacity>
+          </View>
     </View>
   );
 };
@@ -179,5 +173,22 @@ const styles = StyleSheet.create({
     textAlign: "center",
     fontSize: 16,
     color: "#888",
+  },
+  buttonsContainer: {
+    marginTop: 20,
+    alignItems: "center",
+  },
+  mainButton: {
+    backgroundColor: "#1E90FF",
+    padding: 15,
+    borderRadius: 5,
+    width: "80%",
+    marginVertical: 10,
+    alignItems: "center",
+  },
+  mainButtonText: {
+    color: "#fff",
+    fontSize: 16,
+    fontWeight: "bold",
   },
 });
